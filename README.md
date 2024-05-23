@@ -19,26 +19,33 @@ Sign up at  [Staclo.host](https://staclo.host) and create a new page in the admi
 
 ## Example Usage
 
-Here is an example of how to use this action in your workflow:
+Here is an example of how to use this action in your workflow. Select Actions in your project -> set up the workflow yourself and copy the code below.
 
 ```yaml
-name: Deploy to Staclo.host
-
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
-  deploy:
+  quickee_deploy:
     runs-on: ubuntu-latest
+    name: A job upload to Staclo.host
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Deploy to Staclo Host
-        uses: your-username/your-repository@v1
+      # Checkout
+      - name: checkout first
+        uses: actions/checkout@v4.1.0
+        # Run Staclo.host deploy action
+      - name: staclo-deploy
+        id: staclo-deploy
+        uses: staclo-host/deploy-action@v0.1
         with:
-          param1: value1
-          param2: value2
-          param3: value3
+          # Set the secret as an input
+          # Using secrets instead of API key is recommended i.e. ${{ secrets.staclo-api-key }}
+          api-key: 'api-key-example'
+          # Set folder do deploy
+          folder-name: './out'
+      - name: Result
+        # Print the result
+        run: echo "The result of deploy is ${{ steps.staclo-deploy.outputs.result }}"
+
+```
+
+We highly recommend using secret in github so you don't disclose your api key. See  [docs](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions).
