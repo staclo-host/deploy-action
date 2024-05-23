@@ -25,7 +25,7 @@ Here is an example of how to use this action in your workflow. Select Actions in
 on: [push]
 
 jobs:
-  quickee_deploy:
+  staclo_deploy:
     runs-on: ubuntu-latest
     name: A job upload to Staclo.host
     steps:
@@ -35,7 +35,7 @@ jobs:
         # Run Staclo.host deploy action
       - name: staclo-deploy
         id: staclo-deploy
-        uses: staclo-host/deploy-action@v0.1
+        uses: staclo-host/deploy-action@latest
         with:
           # Set the secret as an input
           # Using secrets instead of API key is recommended i.e. ${{ secrets.staclo-api-key }}
