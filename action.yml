@@ -1,5 +1,8 @@
 name: 'Deploy to Staclo.host'
 description: 'This action deploys site to staclo.host'
+branding:
+  icon: 'upload-cloud'
+  color: 'blue'
 inputs:
   api-key:
     description: 'API key'
