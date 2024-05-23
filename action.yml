@@ -1,0 +1,17 @@
+name: 'Deploy to Staclo.host'
+description: 'This action deploys site to staclo.host'
+inputs:
+  api-key:
+    description: 'API key'
+    required: true
+    default: ''
+  folder-name:
+    description: 'Folder to upload'
+    required: false
+    default: './'
+outputs:
+  result:
+    description: 'Result of deploy'
+runs:
+  using: 'node20'
+  main: 'index.js'
